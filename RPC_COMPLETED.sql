@@ -20,6 +20,8 @@ nombre_pais VARCHAR(20) NOT NULL,
 PRIMARY KEY(codigo_pais)
 );
 
+
+
 Create table ciudad(
 codigo_ciudad VARCHAR(20),
 nombre_ciudad VARCHAR(20) NOT NULL,
@@ -55,11 +57,11 @@ username VARCHAR(20) UNIQUE,
 nombre VARCHAR(50) NOT NULL,
 apellido VARCHAR(50) NOT NULL,
 descripcion VARCHAR(300),
-contraseña VARCHAR (20) NOT NULL,
-codigo_pais VARCHAR (100),
-correo VARCHAR (100) UNIQUE,
 codigo_institucion VARCHAR(50),
 codigo_rol VARCHAR(20),
+contraseña VARCHAR (20) NOT NULL,
+codigo_pais VARCHAR (100),
+correoUser VARCHAR (100) UNIQUE,
 PRIMARY KEY(correo),
 FOREIGN KEY (codigo_institucion) REFERENCES institucion(codigo_institucion),
 FOREIGN KEY (codigo_rol) REFERENCES rol(codigo_rol)
@@ -157,7 +159,7 @@ FOREIGN KEY (codigo_rol) REFERENCES rol(codigo_rol)
 
 
 -- relaciojn institucion competencia 
-Create table institucion_competencia{
+Create table es_sede {
 codigo_institucion VARCHAR(50),
 codigo_competencia VARCHAR(20),
 PRIMARY KEY (codigo_institucion, codigo_competencia),
@@ -197,16 +199,16 @@ INSERT INTO ciudad VALUES ('c09','Boston','p06');
 INSERT INTO ciudad VALUES ('c010','Washintong','p06');
 -- insert universidad ---
 
-INSERT INTO institucion VALUES ('A001','ICESI','c01');
-INSERT INTO institucion VALUES ('A002','Universidad de los andes','c01');
-INSERT INTO institucion VALUES ('A003','Universidad santiago de cali','c01');
-INSERT INTO institucion VALUES ('A004','Universidad de Barcelona','c03');
-INSERT INTO institucion VALUES ('A005','Universidad Autonoma de Barcelona','c03');
-INSERT INTO institucion VALUES ('A006','HARVARD','c07');
-INSERT INTO institucion VALUES ('A007','MIT','c07');
-INSERT INTO institucion VALUES ('A008','EAFIT','c02');
-INSERT INTO institucion VALUES ('A009','UAO CAUCA','c08');
-INSERT INTO institucion VALUES ('A010','U de madrid','c04');
+INSERT INTO institucion VALUES ('A001','ICESI','c01', 'tpi_01');
+INSERT INTO institucion VALUES ('A002','Universidad de los andes','c01', 'tpi_01');
+INSERT INTO institucion VALUES ('A003','Universidad santiago de cali','c01', 'tpi_01');
+INSERT INTO institucion VALUES ('A004','Universidad de Barcelona','c03', 'tpi_01');
+INSERT INTO institucion VALUES ('A005','Universidad Autonoma de Barcelona','c03', 'tpi_01');
+INSERT INTO institucion VALUES ('A006','HARVARD','c07','tpi_01');
+INSERT INTO institucion VALUES ('A007','MIT','c07', 'tpi_01');
+INSERT INTO institucion VALUES ('A008','EAFIT','c02', 'tpi_01');
+INSERT INTO institucion VALUES ('A009','UAO CAUCA','c08', 'tpi_01');
+INSERT INTO institucion VALUES ('A010','U de madrid','c04', 'tpi_01');
 -- insert rol-- 
 INSERT INTO rol VALUES ('R01','ADMIN','Acceso total al sistema');
 INSERT INTO rol VALUES ('R02','CAPEquipo','Acceso parcial al sistema, excepto el permiso de delete');
@@ -227,16 +229,16 @@ INSERT INTO usuario VALUES ('miPrecioso','Frodo','Bolson','ES MIO, SOLO MIO ','A
 
 -- insert Competencia
 
-INSERT INTO competencia VALUES ('0001',TO_DATE('25/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('19/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC Cali-ICPC','3','20');
-INSERT INTO competencia VALUES ('0002',TO_DATE('09/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('06/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('05/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('01/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC BOGOTA REGIONAL','3','20');
-INSERT INTO competencia VALUES ('0003',TO_DATE('15/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('11/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('04/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC AMERICA CHALLENGE','1','20');
-INSERT INTO competencia VALUES ('0004',TO_DATE('24/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('21/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('13/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC INVITATIONAL','2','20');
-INSERT INTO competencia VALUES ('0005',TO_DATE('27/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('24/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('23/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('16/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC END YEAR','1','20');
-INSERT INTO competencia VALUES ('0006',TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('09/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('08/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('01/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC NEW START','1','20');
-INSERT INTO competencia VALUES ('0007',TO_DATE('15/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('11/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('04/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC CALI REGIONAL','3','20');
-INSERT INTO competencia VALUES ('0008',TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('17/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('16/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('09/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC MEXICO REGIONAL','3','20');
-INSERT INTO competencia VALUES ('0009',TO_DATE('21/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('18/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('17/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('10/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC ARGENTINA REGIONAL','3','20');
-INSERT INTO competencia VALUES ('0010',TO_DATE('25/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('19/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC PRE-ICPC','5','20');
+INSERT INTO competencia VALUES ('0001',TO_DATE('25/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('19/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC Cali-ICPC','3','20','4');
+INSERT INTO competencia VALUES ('0002',TO_DATE('09/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('06/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('05/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('01/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC BOGOTA REGIONAL','3','20', '3');
+INSERT INTO competencia VALUES ('0003',TO_DATE('15/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('11/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('04/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC AMERICA CHALLENGE','1','20', '3');
+INSERT INTO competencia VALUES ('0004',TO_DATE('24/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('21/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('13/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC INVITATIONAL','2','20', '4');
+INSERT INTO competencia VALUES ('0005',TO_DATE('27/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('24/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('23/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('16/12/2021 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC END YEAR','1','20', '4');
+INSERT INTO competencia VALUES ('0006',TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('09/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('08/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('01/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC NEW START','1','20', '4');
+INSERT INTO competencia VALUES ('0007',TO_DATE('15/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('11/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('04/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC CALI REGIONAL','3','20', '4');
+INSERT INTO competencia VALUES ('0008',TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('17/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('16/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('09/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC MEXICO REGIONAL','3','20', '3');
+INSERT INTO competencia VALUES ('0009',TO_DATE('21/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('18/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('17/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('10/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC ARGENTINA REGIONAL','3','20', '3');
+INSERT INTO competencia VALUES ('0010',TO_DATE('25/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('20/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('19/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),TO_DATE('12/01/2022 08:00:00', 'dd/mm/yyyy hh24:mi:ss'),'RPC PRE-ICPC','5','20','3' );
 
 -- insert equipo
 
